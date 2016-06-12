@@ -126,8 +126,7 @@ class User:
             #if db_result["status"] != 1: 暂时没有判断管理员权限是否锁定
             #    return conf._code[7]
             conn,cursor = db_result["data"]
-            query = 'INSERT INTO jf_admin(phone_id,group_id) \
-                            VALUES("{phone_id}",1)'.format(phone_id=phone_id)
+            query = 'UPDATE jf_user SET group_id=1 WHERE phone_id="{phone_id}"'.format(phone_id=phone_id)
             try:
                 cursor.execute(query)
                 conn.commit()
@@ -150,7 +149,7 @@ class User:
             #if db_result["status"] != 1: 暂时没有判断管理员权限是否锁定
             #    return conf._code[7]
             conn,cursor = db_result["data"]
-            query = 'DELETE  FROM jf_admin WHERE phone_id="{phone_id}"'.format(phone_id=phone_id)
+            query = 'UPDATE jf_user SET group_id=2 WHERE phone_id="{phone_id}"'.format(phone_id=phone_id)
             try:
                 cursor.execute(query)
                 conn.commit()
